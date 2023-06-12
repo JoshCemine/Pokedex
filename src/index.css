@@ -14,7 +14,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --card-height: 363px;
+  --card-width: 170px;
 }
+
 
 a {
   font-weight: 500;
@@ -31,6 +35,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  justify-content: center;
+
 }
 
 h1 {
@@ -69,3 +75,4 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+

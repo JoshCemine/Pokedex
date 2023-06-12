@@ -1,44 +1,168 @@
 .card {
     cursor: pointer;
-    background: rgb(231, 231, 231);
-    border-radius: 20px;
-    /* margin: 2rem 5rem; */
-    margin: 1rem 0.5rem; /* reduced margin */
-    overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 20px 25px;
-    /* width: 250px; */
-    width: calc(15% - 2rem); /* adjusted width for five cards in a row, considering margins */
-    transition: all 0.3s ease;
-}
-
-.card:hover {
-    transform: scale(1.1);
-}
-
-.card_image {
-    width: 80%;
+    border: 1px;
+    transition: 0.3s all;
+    width: 100%;
     display: flex; /* added */
     justify-content: center; /* added */
     align-items: center; /* added */
-}
-
-.card_image img {
-    width: 100%;
-    height: 100%;
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    perspective: 2500px;
     object-fit: cover;
-    align-items: center; /* added */
+    transition: 0.3s all;
 }
 
-.card_info {
-    margin-top: 1rem;
+.card h1 {
+  color: #fff;
+  font-weight: 300;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  align-items: center;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 15%;
+  text-align: center;
+  transition: 1s;
+  z-index: 10;
 }
 
-.card_info h2 {
-    margin-bottom: 10px;
-    color: black;
+.card:hover > h1 {
+  opacity: 1;
 }
 
-.card_info h3 {
-    color: #272727;
+.card_image { /*flipper cardo*/
+  width: 100%;
+  height: 50%;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  object-fit: cover;
+  
+}
+
+.card_image img {  /* flipper boi */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  align-items: center;
+}
+
+.card > img {
+    height: 60%;
+    width: 100%;
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.card:hover > img {
+  opacity: 1;
+  transform: translate3d(0%, -10%, 200px);
+}
+
+.card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  }
+
+.wrapper { /*flipper boi*/
+    transition: all 0.5s;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    object-fit: cover;
+
+    cursor: pointer;
+    background: linear-gradient(0deg, rgba(40,44,52,1) 0%, rgba(17,0,32,.5) 100%);
+    background-color: rgb(13, 17, 26);
+    box-shadow: 0 7px 20px 5px #00000088;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border: 1px solid #ffffff22;
+    margin: 0.5rem 0.5rem; /* reduced margin */
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px 25px;
+    width: 170px;
+    height: 363px;
+    transition: 0.3s all;
+    perspective: 2500px;
+
+    ::before{
+      position: fixed;
+      content: "";
+      box-shadow: 0 0 100px 40px #ffffff08;
+      top: -10%;
+      left: -100%;
+      transform: rotate(-45deg);
+      height: 60rem;
+      transition: .7s all;
+    }
+    &:hover{
+      border: 1px solid #ffffff44;
+      box-shadow: 0 7px 50px 10px #000000aa;
+      transform: scale(1.015);
+      filter: blur(0.5px);
+      ::before{
+        top: -100%;
+        left: 200%;
+      }
+    }
+}
+
+.wrapper::before,
+.wrapper::after {
+  content: "";
+  opacity: 0;
+  width: 100%;
+  height: 80px;
+  transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+
+.wrapper::before {
+  top: 0;
+  height: 100%;
+  background-image: linear-gradient(
+    to top,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+
+.wrapper::after {
+  bottom: 0;
+  opacity: 1;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgba(12, 13, 19) 97%
+  );
+}
+
+.card:hover .wrapper::before,
+.wrapper::after {
+  opacity: 1;
+}
+
+.card:hover .wrapper::after {
+  height: 120px;
+}
+
+::first-letter {
+    text-transform: capitalize;
 }
