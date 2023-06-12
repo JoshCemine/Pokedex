@@ -1,0 +1,12 @@
+.pokesprite {
+    object-fit: contain;
+    max-width: 100%;
+    height: auto ;
+}
+
+.flavor-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

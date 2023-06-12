@@ -68,8 +68,8 @@
 }
 
 .card .big-bois {
-  left: 15%;
-  top: 26%;
+  left: 3%;
+  top: 20%;
   height: 60%;
   width: 100%;
   transition: all 0.5s;
@@ -93,6 +93,8 @@
   }
 
 .wrapper { /*flipper boi*/
+    left: 1%;
+    top: 3%;
     transition: all 0.5s;
     position: absolute;
     width: 100%;

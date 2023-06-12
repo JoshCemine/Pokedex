@@ -51,15 +51,6 @@ const App = () => {
                 );
         }
 
-        // if (search !== '') {
-        //     // Convert the search input to lowercase once
-        //     const lowercaseSearch = search.toLowerCase();
-        //     sortedData = sortedData.filter(pokemon => 
-        //       pokemon.name.toLowerCase().includes(lowercaseSearch) || 
-        //       pokemon.id.toString().includes(lowercaseSearch)
-        //     );
-        //   }
-
         sortedData.sort((a, b) => {
             if (order === 'asc') {
                 return a[filterBy] > b[filterBy] ? 1 : -1;
