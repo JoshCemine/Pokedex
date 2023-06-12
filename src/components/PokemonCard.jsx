@@ -12,12 +12,8 @@ function PokemonCard({ pokemon }) {
       .then((data) => setPokemonDetails(data));
   }, [pokemon.url]);
 
-  const handleCardClick = () => {
-    console.log(pokemonDetails); // Replace this with code to show the details in a modal or another component
-  };
-
   return (
-    <div className="card" onClick={handleCardClick}>
+    <div className="card">
         <Link to={`/pokemon/${pokemon.id}`}>
             <p>ID: {pokemon.id}</p>
             <h2>{pokemon.name}</h2>
@@ -30,8 +26,6 @@ function PokemonCard({ pokemon }) {
         </Link>
     </div>
   );
-
-
 }
 
 export default PokemonCard;
