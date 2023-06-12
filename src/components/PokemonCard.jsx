@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./PokemonCard.css"
 
 function PokemonCard({ pokemon }) {
@@ -17,16 +18,20 @@ function PokemonCard({ pokemon }) {
 
   return (
     <div className="card" onClick={handleCardClick}>
-        <p>ID: {pokemon.id}</p>
-        <h2>{pokemon.name}</h2>
-        <div className='card_image'>
-            <img src={imgUrl} alt={pokemon.name} />
-        </div>
-        <div className='card_info'>
-            {pokemonDetails && <p>Type: {pokemonDetails.types[0].type.name}</p>}
-        </div>
+        <Link to={`/pokemon/${pokemon.id}`}>
+            <p>ID: {pokemon.id}</p>
+            <h2>{pokemon.name}</h2>
+            <div className='card_image'>
+                <img src={imgUrl} alt={pokemon.name} />
+            </div>
+            <div className='card_info'>
+                {pokemonDetails && <p>Type: {pokemonDetails.types[0].type.name}</p>}
+            </div>
+        </Link>
     </div>
   );
+
+
 }
 
 export default PokemonCard;
