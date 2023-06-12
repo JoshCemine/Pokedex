@@ -14,7 +14,7 @@ function PokemonCard({ pokemon }) {
 
   return (
     <div className="card">
-      {/* <Link to={`/pokemon/${pokemon.id}`}> */}
+      <Link to={`/pokemon/${pokemon.id}`}>
         <img className="big-bois" src={imgUrl} alt={pokemon.name} />
         <h1>Read more</h1>
         <div className="wrapper">
@@ -27,7 +27,7 @@ function PokemonCard({ pokemon }) {
               {pokemonDetails && <p>{pokemonDetails.types[0].type.name}</p>}
           </div>
         </div>
-      {/* </Link> */}
+      </Link>
     </div>
 
     // <div className="card">
