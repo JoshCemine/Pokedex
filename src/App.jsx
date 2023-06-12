@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
+import PokedexLogo from "./assets/Pokedex_logo.png";
+import Pikachu from "./assets/Pikachu.gif";
 import PokemonList from "./components/PokemonList";
 import Loader from "./components/Loader";
 import PokemonDetail from "./components/PokemonDetail";
@@ -94,6 +96,8 @@ const App = () => {
           element={
             <>
               <div className='app'>
+                <img src={PokedexLogo} className="logo"/>
+                <img src={Pikachu} className="run"/>
                 <h1>Pokémon Gallery</h1>
                 <label>
                     Filter by:

@@ -54,6 +54,11 @@
   align-items: center;
 }
 
+.card:hover .card_image img {
+  opacity: 0;
+  transition: 0.2s;
+}
+
 .card > img {
     height: 60%;
     width: 100%;
@@ -74,6 +79,7 @@
     box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    border-radius: 25px;
   }
 
 .wrapper { /*flipper boi*/
@@ -89,7 +95,7 @@
     box-shadow: 0 7px 20px 5px #00000088;
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
-    border: 1px solid #ffffff22;
+    border: 1px solid #fff17322;
     margin: 0.5rem 0.5rem; /* reduced margin */
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -98,6 +104,7 @@
     height: 363px;
     transition: 0.3s all;
     perspective: 2500px;
+    border-radius: 25px;
 
     ::before{
       position: fixed;
@@ -166,3 +173,4 @@
 ::first-letter {
     text-transform: capitalize;
 }
+
