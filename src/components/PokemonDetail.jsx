@@ -95,9 +95,11 @@ const PokemonDetail = () => {
   }
 
   return (
-    <Dialog open onClose={() => navigate("/")} maxWidth='md'>
-      <img className='pokesprite' src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name} />
-      <Tabs value={tab} onChange={(_, newValue) => setTab(newValue)}>
+    <Dialog className='details-modal' open onClose={() => navigate("/")} maxWidth='md'>
+      <div className='pokesprite'>
+        <img  src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name} />
+      </div>      
+      <Tabs className='details-modal-tabs' value={tab} onChange={(_, newValue) => setTab(newValue)}>
         <Tab label="Details" />
         <Tab label="Evolution" />
         <Tab label="Stats" />
