@@ -41,7 +41,16 @@ const PokemonDetail = () => {
   const fetchPokemonSpecies = async (url) => {
     const response = await axios.get(url);
     setPokemonSpecies(response.data.genera[7].genus);
-    setFlavorText(response.data.flavor_text_entries[6].flavor_text);
+
+    let flavor_text_entries = response.data.flavor_text_entries;
+    let flavor_text_entries_length = response.data.flavor_text_entries.length
+    for(let i = 0; i < flavor_text_entries_length; i++){
+      console.log(flavor_text_entries[i])
+      if(flavor_text_entries[i].language.name == "en"){
+        setFlavorText(flavor_text_entries[i].flavor_text);
+        break
+      }
+    }
 
     const evolutionResponse = await axios.get(response.data.evolution_chain.url);
     let evoData = evolutionResponse.data.chain;
@@ -94,10 +103,15 @@ const PokemonDetail = () => {
     navigate(`/pokemon/${newId}`);
   }
 
+
   return (
     <Dialog className='details-modal' open onClose={() => navigate("/")} maxWidth='md'>
       <div className='pokesprite'>
         <img  src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name} />
+        <div style={{ textAlign: 'center', marginBottom: '2vw' , fontSize:'2vw' , fontFamily:'monospace' , cursor:"default" }}>
+            No. {pokemonDetail.id} {pokemonDetail.name[0].toUpperCase() + pokemonDetail.name.substring(1)} 
+        </div>
+
       </div>      
       <Tabs className='details-modal-tabs' value={tab} onChange={(_, newValue) => setTab(newValue)}>
         <Tab label="Details" />
@@ -105,17 +119,19 @@ const PokemonDetail = () => {
         <Tab label="Stats" />
       </Tabs>
       {tab === 0 && (
+        <div style={{marginLeft: '2vw' , marginRight:'2vw' , marginBottom:'3vw'}}>
         <Typography>
           <span className='flavor-text'>{flavorText}</span> <br/>
-          ID No: {pokemonDetail.id} <br/>
-          Name: {pokemonDetail.name[0].toUpperCase() + pokemonDetail.name.substring(1)} <br/>
-          Height: {pokemonDetail.height / 10}m <br/>
-          Weight: {pokemonDetail.weight / 10}kg <br/>
-          Types: {pokemonDetail.types.map((type) =>  type.type.name[0].toUpperCase() + type.type.name.substring(1)).join(", ")} <br/>
-          Weaknesses: {pokemonWeaknesses.weaknesses.map(weakness => weakness.charAt(0).toUpperCase() + weakness.slice(1)).join(", ")} <br/>
-          Double Weaknesses: {pokemonWeaknesses.doubleWeaknesses.map(weakness => weakness.charAt(0).toUpperCase() + weakness.slice(1)).join(", ")} <br/>
-          Species: {pokemonSpecies} <br/>
+          <span className='detail-label'>ID No: {pokemonDetail.id} </span> <br/>
+          <span className='detail-label'>Name: {pokemonDetail.name[0].toUpperCase() + pokemonDetail.name.substring(1)} </span><br/>
+          <span className='detail-label'>Height: {pokemonDetail.height / 10}m </span><br/>
+          <span className='detail-label'>Weight: {pokemonDetail.weight / 10}kg </span><br/>
+          <span className='detail-label'> Types: {pokemonDetail.types.map((type) =>  type.type.name[0].toUpperCase() + type.type.name.substring(1)).join(", ")} </span><br/>
+          <span className='detail-label'>Weaknesses: {pokemonWeaknesses.weaknesses.map(weakness => weakness.charAt(0).toUpperCase() + weakness.slice(1)).join(", ")} </span><br/>
+          <span className='detail-label'>Double Weaknesses: {pokemonWeaknesses.doubleWeaknesses.map(weakness => weakness.charAt(0).toUpperCase() + weakness.slice(1)).join(", ")} </span><br/>
+          <span className='detail-label'>Species: {pokemonSpecies} </span><br/>
         </Typography>
+        </div>
       )}
       {tab === 1 && (
         <Typography>
@@ -130,17 +146,63 @@ const PokemonDetail = () => {
         </Typography>
       )}
       {tab === 2 &&(
+        <div style={{marginLeft: '2vw' , marginRight:'2vw' , marginBottom:'2vw'}}>
+
         <Typography>
-            HP: {pokemonDetail.stats[0].base_stat} <br/>
-            Attack: {pokemonDetail.stats[1].base_stat} <br/>
-            Defense: {pokemonDetail.stats[2].base_stat} <br/>
-            Sp. Attack: {pokemonDetail.stats[3].base_stat} <br/>
-            Sp. Defense: {pokemonDetail.stats[4].base_stat} <br/>
-            Speed: {pokemonDetail.stats[5].base_stat}
+
+        <div className="skill-bar">
+          <div className="skill-bar-label">HP: {pokemonDetail.stats[0].base_stat}</div>
+            <div className="skill-bar-value">
+              <div className="skill-bar-progress" style={{ width: `${pokemonDetail.stats[0].base_stat/3}%` }}></div>
+            </div>
+        </div>
+
+
+        <div className="skill-bar">
+          <div className="skill-bar-label">Attack: {pokemonDetail.stats[1].base_stat}</div>
+            <div className="skill-bar-value">
+              <div className="skill-bar-progress" style={{ width: `${pokemonDetail.stats[1].base_stat/3}%` }}></div>
+            </div>
+        </div>
+
+
+        <div className="skill-bar">
+          <div className="skill-bar-label">Defense: {pokemonDetail.stats[2].base_stat}</div>
+            <div className="skill-bar-value">
+              <div className="skill-bar-progress" style={{ width: `${pokemonDetail.stats[2].base_stat/3}%` }}></div>
+            </div>
+        </div>
+
+
+        <div className="skill-bar">
+          <div className="skill-bar-label">Sp. Attack: {pokemonDetail.stats[3].base_stat}</div>
+            <div className="skill-bar-value">
+              <div className="skill-bar-progress" style={{ width: `${pokemonDetail.stats[3].base_stat/3}%` }}></div>
+            </div>
+        </div>
+
+
+        <div className="skill-bar">
+          <div className="skill-bar-label">Sp. Defense: {pokemonDetail.stats[4].base_stat}</div>
+            <div className="skill-bar-value">
+              <div className="skill-bar-progress" style={{ width: `${pokemonDetail.stats[4].base_stat/3}%` }}></div>
+            </div>
+        </div>
+
+
+        <div className="skill-bar">
+          <div className="skill-bar-label">Speed: {pokemonDetail.stats[5].base_stat}</div>
+            <div className="skill-bar-value">
+              <div className="skill-bar-progress" style={{ width: `${pokemonDetail.stats[5].base_stat/3}%` }}></div>
+            </div>
+        </div>
+
         </Typography>
+
+        </div>
       )}
 
-      <div>
+      <div style={{display: 'flex', justifyContent: 'center', gap: '1.5vw', marginBottom: '2vw', marginRight:'0.53vw'}}>
         {id > 1 && (
           <Button 
             variant='contained' 
@@ -163,6 +225,8 @@ const PokemonDetail = () => {
         )}
       </div>
     </Dialog>
+
+    
   );
 };
 

@@ -110,14 +110,14 @@ const App = () => {
                         <option value="name">Name</option>
                     </select>
                 </label>
-                <label>
+                <label style={{ marginLeft: '2vw' }}>
                     Order:
                     <select value={order} onChange={(e) => setOrder(e.target.value)}>
                         <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                     </select>
                 </label>
-                <label>
+                <label style={{ marginLeft: '10vw' }}>
                     Search:
                     <input type="text" value={search} onChange={onSearchChange} />
                 </label>
