@@ -40,7 +40,17 @@ const PokemonDetail = () => {
 
   const fetchPokemonSpecies = async (url) => {
     const response = await axios.get(url);
-    setPokemonSpecies(response.data.genera[7].genus);
+
+    let genera = response.data.genera;
+    let genera_length = response.data.genera.length;
+    for(let i = 0; i < genera_length; i++){
+      console.log(genera[i])
+      if(genera[i].language.name == "en"){
+        setPokemonSpecies(genera[i].genus);
+        break
+      }
+    }
+ 
 
     let flavor_text_entries = response.data.flavor_text_entries;
     let flavor_text_entries_length = response.data.flavor_text_entries.length
